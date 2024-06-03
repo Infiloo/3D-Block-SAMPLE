@@ -1,0 +1,30 @@
+// Zuerst müssen Sie Three.js in Ihr Projekt einbinden
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+// Grundlegende Initialisierung von Szene, Kamera und Renderer
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// Einen Würfel als Spieler hinzufügen
+const geometry = new THREE.BoxGeometry();
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+camera.position.z = 5;
+
+// Eine Render-Schleife erstellen
+function animate() {
+  requestAnimationFrame(animate);
+
+  // Hier können Sie die Logik für Bewegungen und Interaktionen hinzufügen
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
+
+  renderer.render(scene, camera);
+}
+
+animate();
